@@ -2,11 +2,11 @@ const {v4 : uuidv4} = require('uuid')
 
 const rooms = {}
 const roomHandler = (socket) => {
-  const createRoom = ({customerId}) => {
+  const createRoom = ({userId, userType}) => {
     // const roomId = uuidv4();
-    const roomId = customerId;
+    const roomId = userId;
     rooms[roomId] = []
-    socket.emit('room-created', {roomId})
+    socket.emit('room-created', {roomId, userType})
     console.log('Room Create With ID: ', roomId)
   }
   const leaveRoom = ({roomId, peerId}) => {
